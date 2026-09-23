@@ -14,11 +14,13 @@
 
 ![Poster](https://cdn-images.dzcdn.net/images/cover/4ac453f76ecd388789e3e6bb4a750b69/1900x1900-000000-80-0-0.jpg)
 
-``html
-<h1>No te lo pierdas</h1>
+```html
+<h1>AQUI</h1>
 ```
->No olvides nada
+
+>Horario
 
 | Hora | Fecha | Duracion |
 |------------|-------------|-------------|
 | 19:30 | 06/07/2026 | 3:30h |
+---
