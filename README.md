@@ -2,8 +2,8 @@
 
 Repositorio con las memorias de las prácticas del módulo de Aplicaciones Web.
 
-**Alumno/a:** Tu Nombre y Apellidos  
-**Curso:** SMR  
+**Alumno/a:** Nabil
+**Curso:** 2SMR  
 
 ## Índice de prácticas
 
