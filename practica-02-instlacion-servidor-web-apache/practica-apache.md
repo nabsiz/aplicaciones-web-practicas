@@ -147,7 +147,7 @@ Desde el navegador de otro equipo (mi Linux Mint) entro a `http://192.168.56.17`
 
 **Explicación:** la página «Apache2 Default Page – It works!» confirma que el servidor es accesible desde la red, no solo desde dentro de la máquina.
 
-[`curl -I http://localhost` y de `ss -tulpn`](imagenes/3.3.png)
+![`curl -I http://localhost` y de `ss -tulpn`](imagenes/3.3.png)
 
 ### 3.4. Firewall
 
@@ -174,7 +174,7 @@ Se puede ver con `sudo ufw app info 'Apache Full'`.
 
 Probé cada comando y esto es lo que hace cada uno:
 
-| Comando | Función | Explicación con mis palabras |
+| Comando | Función | Explicación |
 |---|---|---|
 | `sudo systemctl start apache2` | Inicia el servicio | Arranca Apache si está parado |
 | `sudo systemctl stop apache2` | Detiene el servicio | Lo apaga; las webs dejan de responder |
@@ -218,13 +218,11 @@ apache2ctl -M
 ls -l /etc/apache2/
 ```
 
-📸 **Captura: contenido de `/etc/apache2/`**
-
-![Contenido de /etc/apache2](img/3.png)
+![Contenido de /etc/apache2](imagenes/3.png)
 
 ### Tabla de ficheros y directorios
 
-| Ruta | Descripción con mis palabras |
+| Ruta | Descripción |
 |---|---|
 | `/etc/apache2/apache2.conf` | Fichero de configuración **principal**. Carga al resto (`ports.conf`, `mods-enabled`, `conf-enabled`, `sites-enabled`) |
 | `/etc/apache2/ports.conf` | Indica en qué **puertos escucha** Apache (`Listen 80`, y `443` si hay SSL) |
@@ -244,9 +242,8 @@ ls -l /etc/apache2/
 ls -l /etc/apache2/sites-enabled/
 ```
 
-📸 **Captura: enlace simbólico en `sites-enabled`**
 
-![Enlace simbólico](img/4.png)
+![Enlace simbólico](imagenes/4.png)
 
 Salida:
 
@@ -284,7 +281,7 @@ echo "<h1>Servidor de Nabil Aisatin</h1>" | sudo tee /var/www/html/index.html
 
 📸 **Captura: nueva página de inicio**
 
-![Página de inicio cambiada](img/6.s.png)
+![Página de inicio cambiada](imagenes/6.s.png)
 
 **Explicación:** `echo` escribe el texto HTML y `tee` lo guarda en el fichero con permisos de administrador (con `>` normal no funcionaría porque la redirección la hace mi usuario, no `sudo`). Ahora `/var/www/html/index.html` es mi página en lugar de la de Ubuntu.
 
@@ -314,7 +311,7 @@ curl -I http://localhost:8080
 
 📸 **Capturas: edición, configtest, reload y estado**
 
-![configtest y reload](img/5.png)
+![configtest y reload](imagenes/)
 
 📸 **Captura: respuesta en el puerto 8080**
 
