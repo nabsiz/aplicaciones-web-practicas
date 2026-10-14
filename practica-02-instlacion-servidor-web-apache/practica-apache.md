@@ -53,9 +53,7 @@ Release:        24.04
 Codename:       noble
 ```
 
-📸 **Captura: versión de Ubuntu**
-
-![Versión de Ubuntu](img/1.png)
+![Versión de Ubuntu](imagenes/1.png)
 
 **Explicación:** el sistema es Ubuntu 24.04.5 LTS (nombre en clave *noble*). LTS significa *Long Term Support*: tiene soporte durante muchos años, por eso se usa en servidores. El mensaje «No LSB modules are available» es normal y no es un error.
 
@@ -107,9 +105,9 @@ Al instalar `apache2`, apt instala también automáticamente otros paquetes que 
 sudo systemctl status apache2
 ```
 
-📸 **Captura: estado del servicio**
 
-![Estado de Apache](img/2.1.png)
+
+![Estado de Apache](imagenes/2.1.png)
 
 **Explicación:** se ve `Loaded: ... enabled` (arranca solo con el sistema) y `Active: active (running)` (está funcionando ahora). Aparecen varios procesos `apache2 -k start`: uno principal y varios hijos que atienden las peticiones. También sale el aviso `AH00558: Could not reliably determine the server's fully qualified domain name`; no es un error grave, se soluciona en el apartado 6.3.
 
@@ -145,13 +143,11 @@ Content-Type: text/html
 
 Desde el navegador de otro equipo (mi Linux Mint) entro a `http://192.168.56.17` y aparece la página por defecto:
 
-📸 **Captura: página por defecto de Apache**
-
-![Apache2 Ubuntu Default Page](img/2.2.png)
+![Apache2 Ubuntu Default Page](imagenes/2.2.png)
 
 **Explicación:** la página «Apache2 Default Page – It works!» confirma que el servidor es accesible desde la red, no solo desde dentro de la máquina.
 
-> 📸 **PENDIENTE (opcional):** captura de `curl -I http://localhost` y de `ss -tulpn`.
+[`curl -I http://localhost` y de `ss -tulpn`](imagenes/3.3.png)
 
 ### 3.4. Firewall
 
