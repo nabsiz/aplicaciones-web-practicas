@@ -311,11 +311,11 @@ curl -I http://localhost:8080
 
 📸 **Capturas: edición, configtest, reload y estado**
 
-![configtest y reload](imagenes/)
+![configtest y reload](imagenes/5.png)
 
 📸 **Captura: respuesta en el puerto 8080**
 
-![curl al puerto 8080](img/6.png)
+![curl al puerto 8080](imagenes/6.png)
 
 Salida:
 
@@ -340,9 +340,8 @@ curl -I http://localhost
 
 La captura del fichero ya restaurado con `<VirtualHost *:80>` se ve aquí:
 
-![000-default.conf en el puerto 80](img/6.3.png)
+![000-default.conf en el puerto 80](imagenes/6.3.png)
 
-> 📸 **PENDIENTE:** captura de `curl -I http://localhost` (sin `:8080`) con `200 OK`, para demostrar que he vuelto al puerto 80.
 
 ### 6.3. Definir el nombre del servidor (`ServerName`)
 
@@ -352,9 +351,8 @@ sudo a2enconf servername
 sudo systemctl reload apache2
 ```
 
-📸 **Captura: ServerName configurado**
 
-![ServerName](img/6.png)
+![ServerName](imagenes/6.png)
 
 Salida del comando:
 
@@ -394,7 +392,7 @@ grep ServerAdmin /etc/apache2/sites-available/000-default.conf
 
 Vista del fichero antes del cambio (línea `ServerAdmin webmaster@localhost`):
 
-![000-default.conf con ServerAdmin](img/6.3.png)
+![000-default.conf con ServerAdmin](iamgenes/6.3.png)
 
 > 📸 **PENDIENTE:** captura del `grep ServerAdmin` (o del nano) mostrando el correo nuevo.
 
