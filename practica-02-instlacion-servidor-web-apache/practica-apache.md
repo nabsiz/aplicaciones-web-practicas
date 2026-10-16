@@ -645,6 +645,8 @@ curl http://sitio2.local
 
 ![hosts y pruebas con curl](imagenes/8.4-8.5.png)
 
+![Bienvenido a sitio 1](imagenes/12.png)
+
 Salida:
 
 ```html
