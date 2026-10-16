@@ -419,7 +419,6 @@ curl -I http://localhost/paginaquenoexiste
 
 Salida esperada: `HTTP/1.1 404 Not Found`. En el navegador, `http://192.168.56.17/paginaquenoexiste` debe mostrar mi mensaje.
 
-> 📸 **PENDIENTE:** captura del navegador con la página 404 personalizada.
 
 **Explicación:** `ErrorDocument` le dice a Apache qué página enseñar cuando ocurre un error concreto. Así el usuario ve un mensaje propio en vez del genérico «Not Found».
 
@@ -435,7 +434,7 @@ Módulos cargados actualmente:
 apache2ctl -M
 ```
 
-![Módulos cargados](img/7.1.png)
+![Módulos cargados](imagenes/7.1.png)
 
 Módulos disponibles (instalados pero no necesariamente activos):
 
@@ -443,7 +442,7 @@ Módulos disponibles (instalados pero no necesariamente activos):
 ls /etc/apache2/mods-available/
 ```
 
-![Módulos disponibles](img/7.2.png)
+![Módulos disponibles](imagenes/7.2.png)
 
 Activo `rewrite`, `headers` y `ssl`, reinicio y compruebo:
 
@@ -455,7 +454,7 @@ sudo systemctl restart apache2
 apache2ctl -M | grep -E "rewrite|headers|ssl"
 ```
 
-![Activación de módulos](img/7.3.png)
+![Activación de módulos](imagenes/7.3.png)
 
 Salida:
 
@@ -490,9 +489,9 @@ apache2ctl -M | grep status
 
 Tras desactivarlo, el último comando no muestra nada: `status_module` ya no aparece entre los módulos cargados (en la captura 7.1 sí aparecía al final de la lista).
 
-> 📸 **PENDIENTE (opcional):** captura de `a2dismod status` y del `grep status` vacío.
+![11](imagenes/10.png)
 
-### ❓ ¿Qué ocurre si desactivas un módulo del que depende otro?
+###  ¿Qué ocurre si desactivas un módulo del que depende otro?
 
 Hay dos casos:
 
@@ -513,7 +512,7 @@ echo "<h1>Bienvenido a SITIO 1</h1>" | sudo tee /var/www/sitio1/index.html
 echo "<h1>Bienvenido a SITIO 2</h1>" | sudo tee /var/www/sitio2/index.html
 ```
 
-![Creación de las páginas](img/8.1.png)
+![Creación de las páginas](imagenes/8.1.png)
 
 **Explicación:** `mkdir -p` crea ambas carpetas de una vez. Cada sitio tiene su propio `DocumentRoot` con su `index.html`.
 
@@ -548,7 +547,7 @@ Repito para el sitio 2:
 sudo nano /etc/apache2/sites-available/sitio2.conf
 ```
 
-![Abriendo sitio2.conf](img/8.2.1.png)
+![Abriendo sitio2.conf](imagenes/8.2.1.png)
 
 Contenido de `sitio2.conf`:
 
@@ -569,7 +568,7 @@ Contenido de `sitio2.conf`:
 </VirtualHost>
 ```
 
-![Contenido de sitio2.conf](img/8.2.2.png)
+![Contenido de sitio2.conf](imagenes/8.2.2.png)
 
 **Explicación de cada directiva:**
 
@@ -596,10 +595,8 @@ sudo systemctl reload apache2
 apache2ctl -S
 ```
 
-📸 **Captura: salida de `apache2ctl -S`**
+![apache2ctl -S](imagenes/11.png)
 
-> 📸 **PENDIENTE:** captura de `apache2ctl -S`. Debe verse algo como esto:
->
 > ```text
 > VirtualHost configuration:
 > *:80      is a NameVirtualHost
@@ -651,7 +648,7 @@ curl http://sitio1.local
 curl http://sitio2.local
 ```
 
-![Edición de hosts y pruebas con curl](img/8.4-8.5.png)
+![hosts y pruebas con curl](imagenes/8.420%y%208.5.png)
 
 Salida:
 
