@@ -79,7 +79,7 @@ Server version: Apache/2.4.58 (Ubuntu)
 
 **Explicación:** `apt install apache2` descarga e instala el servidor web y lo deja arrancado y habilitado. `apache2 -v` solo muestra la versión, sirve para confirmar que el programa existe y funciona.
 
-### ❓ ¿Qué paquetes adicionales se han instalado como dependencias?
+###  ¿Qué paquetes adicionales se han instalado como dependencias?
 
 Al instalar `apache2`, apt instala también automáticamente otros paquetes que Apache necesita para funcionar. En Ubuntu 24.04 son los siguientes (comparar con la salida de apt de mi máquina, ya que puede variar según lo que ya tuviera instalado):
 
@@ -158,7 +158,7 @@ sudo ufw allow 'Apache'
 
 **Explicación:** `ufw status` dice si el cortafuegos está activo. `ufw allow 'Apache'` abre el puerto 80 usando un perfil ya definido por el paquete de Apache. Si UFW está inactivo (`Status: inactive`) no bloquea nada.
 
-### ❓ ¿Qué diferencia hay entre los perfiles Apache, Apache Full y Apache Secure?
+###  ¿Qué diferencia hay entre los perfiles Apache, Apache Full y Apache Secure?
 
 | Perfil | Puertos que abre | Uso |
 |---|---|---|
