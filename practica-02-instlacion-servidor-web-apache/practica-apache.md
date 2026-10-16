@@ -643,7 +643,7 @@ curl http://sitio1.local
 curl http://sitio2.local
 ```
 
-![hosts y pruebas con curl](imagenes/8.4%20y%208.5.png)
+![hosts y pruebas con curl](imagenes/8.4-8.5.png)
 
 Salida:
 
@@ -654,11 +654,7 @@ Salida:
 
 **Explicación:** el servidor es el mismo y la IP también, pero cada nombre devuelve una página distinta. Apache mira el nombre que escribió el cliente (cabecera `Host`) y elige el virtual host que coincide con `ServerName`.
 
-📸 **Captura: ambos sitios en el navegador**
-
-> 📸 **PENDIENTE:** dos capturas de Firefox en Linux Mint, una con `http://sitio1.local` y otra con `http://sitio2.local` (escribir `http://` completo; si se queda cargando, usar ventana privada).
-
-### ❓ ¿Qué diferencia hay entre virtual hosts basados en nombre y basados en IP? ¿Cuál has usado?
+### ¿Qué diferencia hay entre virtual hosts basados en nombre y basados en IP? ¿Cuál has usado?
 
 | Tipo | Cómo distingue los sitios | Necesita |
 |---|---|---|
@@ -710,9 +706,8 @@ sudo chmod 000 /var/www/sitio1/index.html
 
 Entro desde el navegador a `http://sitio1.local` (o por la IP, que cae en `sitio1` por ser el virtual host por defecto):
 
-📸 **Captura: error 403 en el navegador**
 
-![Error 403 Forbidden](img/9.png)
+![Error 403](imagenes/9.png)
 
 Reviso el log de errores de ese sitio:
 
@@ -722,13 +717,6 @@ sudo cat /var/log/apache2/sitio1_error.log
 sudo tail -n 5 /var/log/apache2/sitio1_error.log
 ```
 
-📸 **Captura: registro del error 403 en el log**
-
-> 📸 **PENDIENTE:** captura de la línea del log. Tendrá un aspecto como este (cambiarán la fecha y la IP del cliente):
->
-> ```text
-> [core:error] [pid 2262] (13)Permission denied: [client 192.168.56.1:5xxxx] AH00132: file permissions deny server access: /var/www/sitio1/index.html
-> ```
 
 Restauro los permisos:
 
