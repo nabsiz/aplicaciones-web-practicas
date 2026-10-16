@@ -622,7 +622,7 @@ Línea añadida al final:
 ```text
 127.0.0.1 sitio1.local sitio2.local
 ```
-
+más
 **En el equipo cliente, Linux Mint** (para probar desde el navegador). Aquí **NO** se pone `127.0.0.1`, porque apuntaría al propio Mint y no al servidor. Se pone la IP de la máquina virtual:
 
 ```bash
@@ -648,7 +648,7 @@ curl http://sitio1.local
 curl http://sitio2.local
 ```
 
-![hosts y pruebas con curl](imagenes/8.420%y%208.5.png)
+![hosts y pruebas con curl](imagenes/8.4%20y%208.5.png)
 
 Salida:
 
