@@ -388,7 +388,7 @@ grep ServerAdmin /etc/apache2/sites-available/000-default.conf
 
 Vista del fichero antes del cambio (línea `ServerAdmin webmaster@localhost`):
 
-![000-default.conf con ServerAdmin](iamgenes/6.3.png)
+![000-default.conf](imagenes/6.3.png)
 
 
 **Explicación:** `ServerAdmin` es el correo de contacto del administrador. Apache lo puede mostrar en algunas páginas de error. No cambia el funcionamiento, solo informa.
