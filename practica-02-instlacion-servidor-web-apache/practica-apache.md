@@ -206,7 +206,7 @@ apache2ctl -M
 
 > **Importante:** si dejo Apache parado o con `disable`, el navegador dará «No se puede conectar» tras reiniciar la máquina. Es lo que me pasó (ver [apartado 10](#10-tabla-de-fallos-encontrados)). Por eso termino siempre con `sudo systemctl enable apache2` y `sudo systemctl start apache2`.
 
-### ❓ ¿Cuándo conviene usar `reload` en lugar de `restart`?
+###  ¿Cuándo conviene usar `reload` en lugar de `restart`?
 
 `reload` conviene usarlo cuando **solo he cambiado la configuración** (un virtual host, un módulo, un `ServerName`) y el servidor está en producción: Apache vuelve a leer los ficheros con el método *graceful*, termina las peticiones en curso con la configuración vieja y las nuevas ya usan la nueva, **sin cortar a nadie**. `restart` apaga y vuelve a encender, así que se pierden las conexiones abiertas; hay que usarlo cuando `reload` no basta (por ejemplo, al activar o desactivar módulos, o cuando el servicio está colgado).
 
@@ -253,7 +253,7 @@ lrwxrwxrwx 1 root root 35 sep 30 07:22 000-default.conf -> ../sites-available/00
 
 **Explicación:** la `l` del principio de `lrwxrwxrwx` indica que es un **enlace simbólico** y la flecha `->` muestra a qué fichero apunta: `../sites-available/000-default.conf`.
 
-### ❓ ¿Por qué Apache usa enlaces simbólicos entre `*-available` y `*-enabled`?
+###  ¿Por qué Apache usa enlaces simbólicos entre `*-available` y `*-enabled`?
 
 Porque así se puede **activar o desactivar** un sitio, módulo o configuración sin borrar ni copiar el fichero real. El fichero original siempre está en `*-available`; para activarlo (`a2ensite`) se crea un enlace en `*-enabled`, y para desactivarlo (`a2dissite`) solo se borra el enlace, y el fichero original sigue intacto. Ventajas:
 
@@ -278,8 +278,6 @@ sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
 ```bash
 echo "<h1>Servidor de Nabil Aisatin</h1>" | sudo tee /var/www/html/index.html
 ```
-
-📸 **Captura: nueva página de inicio**
 
 ![Página de inicio cambiada](imagenes/6.s.png)
 
@@ -309,11 +307,9 @@ sudo systemctl reload apache2
 curl -I http://localhost:8080
 ```
 
-📸 **Capturas: edición, configtest, reload y estado**
 
 ![configtest y reload](imagenes/5.png)
 
-📸 **Captura: respuesta en el puerto 8080**
 
 ![curl al puerto 8080](imagenes/6.png)
 
@@ -340,7 +336,7 @@ curl -I http://localhost
 
 La captura del fichero ya restaurado con `<VirtualHost *:80>` se ve aquí:
 
-![000-default.conf en el puerto 80](imagenes/6.3.png)
+![000-default.conf](imagenes/6.3.png)
 
 
 ### 6.3. Definir el nombre del servidor (`ServerName`)
@@ -394,7 +390,6 @@ Vista del fichero antes del cambio (línea `ServerAdmin webmaster@localhost`):
 
 ![000-default.conf con ServerAdmin](iamgenes/6.3.png)
 
-> 📸 **PENDIENTE:** captura del `grep ServerAdmin` (o del nano) mostrando el correo nuevo.
 
 **Explicación:** `ServerAdmin` es el correo de contacto del administrador. Apache lo puede mostrar en algunas páginas de error. No cambia el funcionamiento, solo informa.
 
