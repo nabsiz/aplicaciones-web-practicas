@@ -208,8 +208,6 @@ sudo systemctl start mariadb
 systemctl is-active mariadb
 ```
 
-📸 **Capturas: error 2002 y recuperación (`active`)**
-
 ![Error 2002 y recuperación](img/5.png)
 
 **Interpretación:** en la captura se ve primero el ERROR 2002 al intentar entrar con el servicio parado, y después, tras `start`, que `is-active` vuelve a responder `active`.
@@ -297,7 +295,7 @@ pdo_mysql
 
 **Explicación:** `php -m` lista los módulos de PHP instalados. `mysqli` y `pdo_mysql` son las dos formas que tiene PHP de conectarse a MySQL/MariaDB y `mysqlnd` es el driver nativo que usan. WordPress se conecta a su base de datos con estas piezas.
 
-[sAlida de php -m | grep -i mysql](img/6.4.png)
+![sAlida de php -m | grep -i mysql](img/6.4.png)
 
 ### Comprobar que Apache ejecuta PHP (`info.php`)
 
@@ -321,7 +319,6 @@ ls /var/www/html
 
 Salida esperada: solo aparecen `index.html` (y `404.html` si lo creé en la práctica anterior); ya no está `info.php`.
 
-> 📸 **PENDIENTE (opcional): captura de `ls /var/www/html`** sin `info.php`.
 ![Salida de ls /var/www/html](img/6.5.png)
 
 ### ❓ ¿Por qué es peligroso dejar `info.php` en un servidor real?
