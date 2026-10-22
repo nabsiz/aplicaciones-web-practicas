@@ -139,7 +139,7 @@ enabled
 ```
 
 >
-> `![Estado de MariaDB](img/3.1.png)`
+![Estado de MariaDB](img/3.1.png)`
 
 ### 3.2. Entrar en la base de datos
 
