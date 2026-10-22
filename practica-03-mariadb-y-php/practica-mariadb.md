@@ -408,4 +408,3 @@ También he aprendido a **diagnosticar** una caída de la base de datos: si Mari
 |---|---|---|
 | El enunciado solo indicaba `a2ensite 000-default.conf` para «deshabilitar» los sitios virtuales | Activar el sitio por defecto no desactiva `sitio1` y `sitio2` | Añadí `a2dissite sitio1.conf sitio2.conf` antes de `a2ensite` |
 | PHP no se ejecuta tras instalarlo (se vería el código o se descargaría el fichero) | Apache no ha cargado todavía el módulo nuevo | `sudo systemctl restart apache2` (hace falta reiniciar, no solo recargar) |
-| `info.php` expone información del servidor | Fichero de prueba que muestra la configuración
