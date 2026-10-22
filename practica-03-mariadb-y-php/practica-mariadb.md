@@ -83,9 +83,7 @@ Salida de la última línea:
 active
 ```
 
-📸 **Captura: respuesta de `systemctl is-active apache2`**
-
-![Apache activo](img/mariadb-1.png)
+![Apache activo](img/1.png)
 
 **Interpretación:** Apache está activo, así que la primera pieza del LAMP sigue funcionando antes de instalar las demás.
 
@@ -111,9 +109,7 @@ Salida:
 mariadb  Ver 15.1 Distrib 10.11.14-MariaDB, for debian-linux-gnu (x86_64) using  EditLine wrapper
 ```
 
-📸 **Captura: versión de MariaDB**
-
-![Versión de MariaDB](img/mariadb-2.png)
+![Versión de MariaDB](img/2.png)
 
 **Explicación:** la versión instalada es **MariaDB 10.11.14**. El «15.1» es la versión del cliente de línea de comandos (`mariadb`), no del servidor; la del servidor es la que aparece tras `Distrib`. `EditLine wrapper` es la librería que permite editar la línea de comandos con las flechas.
 
@@ -142,9 +138,8 @@ Salida esperada:
 enabled
 ```
 
-> 📸 **PENDIENTE: captura de `sudo systemctl status mariadb`** (se ve `active (running)`) y de `systemctl is-enabled mariadb` (`enabled`). Guárdala como `img/mariadb-3.1.png` y descomenta la línea de abajo:
 >
-> `![Estado de MariaDB](img/mariadb-3.1.png)`
+> `![Estado de MariaDB](img/3.1.png)`
 
 ### 3.2. Entrar en la base de datos
 
@@ -152,9 +147,8 @@ enabled
 sudo mariadb
 ```
 
-📸 **Captura: mensaje de bienvenida del monitor de MariaDB**
 
-![Monitor de MariaDB](img/mariadb-3.2.png)
+![Monitor de MariaDB](img/3.2.png)
 
 **Explicación:** al entrar con `sudo mariadb` aparece el mensaje *«Welcome to the MariaDB monitor»* y el prompt cambia a `MariaDB [(none)]>`. `(none)` significa que todavía no he seleccionado ninguna base de datos. Entro como administrador (root de MariaDB) gracias a `sudo`, sin contraseña, porque MariaDB en Ubuntu autentica por *socket*: reconoce que soy root del sistema. Esto confirma que el servidor **funciona y responde**. Para salir:
 
@@ -216,11 +210,9 @@ systemctl is-active mariadb
 
 📸 **Capturas: error 2002 y recuperación (`active`)**
 
-![Error 2002 y recuperación](img/mariadb-5.png)
+![Error 2002 y recuperación](img/5.png)
 
 **Interpretación:** en la captura se ve primero el ERROR 2002 al intentar entrar con el servicio parado, y después, tras `start`, que `is-active` vuelve a responder `active`.
-
-> 📸 **PENDIENTE (recomendado):** la parte de arriba, el momento en que `systemctl is-active mariadb` responde `inactive` tras el `stop`.
 
 ### ❓ Si WordPress no pudiera conectar con la base de datos, ¿qué dos comandos de este apartado usarías para saber si el problema es que MariaDB está parado?
 
@@ -256,9 +248,9 @@ php -v
 | `php-zip` | Instalación y actualización de plugins y temas |
 | `php-intl` | Idiomas y formatos regionales |
 
-📸 **Captura: `php -v`**
 
-![Versión de PHP](img/mariadb-6.1.png)
+
+![Versión de PHP](img/6.1.png)
 
 Salida:
 
@@ -287,7 +279,7 @@ Salida esperada:
 
 **Explicación:** hay que **reiniciar** (no basta `reload`) para que Apache cargue el módulo nuevo. `apache2ctl -M` lista los módulos cargados y `grep` filtra los de `mpm` y `php`. Al instalar `libapache2-mod-php`, Ubuntu cambia Apache al modo `mpm_prefork`, que es el que necesita `mod_php`.
 
-> 📸 **PENDIENTE: captura de la salida de `apache2ctl -M | grep -E "mpm|php"`** (módulos cargados). Guárdala como `img/mariadb-6.3.png`.
+![sAlida modulos cargados](img/6.3.png)
 
 ### Comprobar que PHP puede hablar con MariaDB
 
@@ -305,7 +297,7 @@ pdo_mysql
 
 **Explicación:** `php -m` lista los módulos de PHP instalados. `mysqli` y `pdo_mysql` son las dos formas que tiene PHP de conectarse a MySQL/MariaDB y `mysqlnd` es el driver nativo que usan. WordPress se conecta a su base de datos con estas piezas.
 
-> 📸 **PENDIENTE: captura de `php -m | grep -i mysql`.** Guárdala como `img/mariadb-6.4.png`.
+[sAlida de php -m | grep -i mysql](img/6.4.png)
 
 ### Comprobar que Apache ejecuta PHP (`info.php`)
 
@@ -315,9 +307,8 @@ echo '<?php phpinfo();' | sudo tee /var/www/html/info.php
 
 Abro en el navegador `http://192.168.56.17/info.php`:
 
-📸 **Captura: página `info.php` en el navegador**
 
-![Página info.php](img/mariadb-6.2.png)
+![Página info.php](img/6.2.png)
 
 **Explicación:** la función `phpinfo()` genera una página con toda la configuración de PHP. Que aparezca esa página (y no el código fuente) demuestra que **Apache le pasa los ficheros `.php` a PHP y este los ejecuta**. En la captura se ve `Apache/2.4.58 (Ubuntu)`, `User/Group www-data(33)/33` y, entre los módulos cargados, `mod_php` y `prefork`, que confirman que Apache ejecuta PHP.
 
@@ -331,6 +322,7 @@ ls /var/www/html
 Salida esperada: solo aparecen `index.html` (y `404.html` si lo creé en la práctica anterior); ya no está `info.php`.
 
 > 📸 **PENDIENTE (opcional): captura de `ls /var/www/html`** sin `info.php`.
+![Salida de ls /var/www/html](img/6.5.png)
 
 ### ❓ ¿Por qué es peligroso dejar `info.php` en un servidor real?
 
@@ -365,9 +357,7 @@ PHP 8.3.6 (cli) (built: Oct  7 2026 18:06:38) (NTS)
 ...
 ```
 
-**Explicación:** `is-active` con dos servicios responde `active` una vez por cada uno (primero Apache, luego MariaDB). `php -v` confirma que PHP responde.
-
-> 📸 **PENDIENTE: captura de `systemctl is-active apache2 mariadb` y `php -v`.** Guárdala como `img/mariadb-7.png`.
+**Explicación:** `is-active` con dos servicios responde `active` una vez por cada uno (primero Apache, luego MariaDB). `php -v` confirma que PHP responde
 
 ### Estado final del servidor
 
@@ -382,8 +372,7 @@ PHP 8.3.6 (cli) (built: Oct  7 2026 18:06:38) (NTS)
 
 Con el servidor listo, hago una **instantánea (snapshot)** de la máquina virtual. Será mi punto de partida seguro para la práctica de WordPress: si algo sale mal, puedo volver a este estado en un minuto.
 
-> 📸 **PENDIENTE (si lo pide el profesor): captura del snapshot** en el programa de virtualización.
-
+![Snapshot](img/snap.png)
 ---
 
 ## 8. Resumen de comandos (chuleta)
@@ -421,8 +410,5 @@ También he aprendido a **diagnosticar** una caída de la base de datos: si Mari
 | Problema | Causa | Solución |
 |---|---|---|
 | El enunciado solo indicaba `a2ensite 000-default.conf` para «deshabilitar» los sitios virtuales | Activar el sitio por defecto no desactiva `sitio1` y `sitio2` | Añadí `a2dissite sitio1.conf sitio2.conf` antes de `a2ensite` |
-| ERROR 2002 al ejecutar `sudo mariadb` | El servicio estaba parado (lo hice a propósito) | `sudo systemctl start mariadb` y comprobar con `is-active` |
 | PHP no se ejecuta tras instalarlo (se vería el código o se descargaría el fichero) | Apache no ha cargado todavía el módulo nuevo | `sudo systemctl restart apache2` (hace falta reiniciar, no solo recargar) |
-| `info.php` expone información del servidor | Fichero de prueba que muestra la configuración | Lo borré con `sudo rm /var/www/html/info.php` |
-
-> ✏️ **Edita esta tabla** y deja solo los problemas que de verdad tuviste. Si no tuviste ninguno, dilo con tus palabras.
+| `info.php` expone información del servidor | Fichero de prueba que muestra la configuración
