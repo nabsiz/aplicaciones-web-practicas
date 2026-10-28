@@ -10,7 +10,7 @@
 | **Servidor** | Ubuntu Server 24.04 (máquina virtual, usuario `smr-web`, IP `192.168.56.17`) |
 | **Equipo cliente** | Linux Mint (navegador Firefox) |
 
-> 🔒 **Seguridad:** en esta memoria **no aparece ninguna contraseña**. Donde iría una, se escribe `********` y en las capturas está tapada.
+>  **Seguridad:** en esta memoria **no aparece ninguna contraseña**. Donde iría una, se escribe `********` y en las capturas está tapada.
 
 ---
 
@@ -76,7 +76,6 @@ Salida:
 10.0.2.15 192.168.56.17 fd17:625c:f037:2:a00:27ff:fe45:b45d
 ```
 
-📸 **Captura: IP del servidor**
 
 ![hostname -I](img/1.1.png)
 
@@ -120,7 +119,7 @@ PHP 8.3.6 (cli) (built: Oct  7 2026 18:06:38) (NTS)
 
 **Explicación:** `active` dos veces significa que Apache y MariaDB están funcionando, y PHP responde con la versión 8.3.6. Las tres piezas que necesita WordPress están listas.
 
-### ❓ ¿Qué dos «puertas» (programas y puertos) usas para trabajar con el servidor en esta práctica y para qué sirve cada una?
+###  ¿Qué dos «puertas» (programas y puertos) usas para trabajar con el servidor en esta práctica y para qué sirve cada una?
 
 **Respuesta:**
 
@@ -163,7 +162,7 @@ Syntax OK
 - `configtest` comprueba la sintaxis: `Syntax OK` significa que no hay errores.
 - `reload` aplica los cambios sin cortar las conexiones.
 
-> ⚠️ En la captura se ve que al empezar `apache2` salía **`inactive`** (Apache estaba parado, probablemente tras reiniciar la máquina virtual). Lo arranqué con `sudo systemctl start apache2` y volvió a `active`. Ver [apartado 12](#12-conclusiones-y-problemas-encontrados).
+>  En la captura se ve que al empezar `apache2` salía **`inactive`** (Apache estaba parado, tras reiniciar la máquina virtual). Lo arranqué con `sudo systemctl start apache2` y volvió a `active`. Ver [apartado 12](#12-conclusiones-y-problemas-encontrados).
 
 **Si aparece el aviso del `ServerName`:**
 
@@ -209,7 +208,7 @@ En el navegador de mi ordenador abro `http://192.168.56.17`.
 
 **Explicación:** aparece mi página «Servidor de Nabil» (la de la primera práctica). Entro con la **IP** y ya no hace falta usar `sitio1.local` ni `sitio2.local`.
 
-### ❓ ¿Qué diferencia hay entre desactivar un sitio con `a2dissite` y borrar sus ficheros? ¿Por qué ahora ves la página por defecto de Apache y antes veías `sitio1`?
+###  ¿Qué diferencia hay entre desactivar un sitio con `a2dissite` y borrar sus ficheros? ¿Por qué ahora ves la página por defecto de Apache y antes veías `sitio1`?
 
 **Respuesta:**
 
@@ -273,11 +272,10 @@ Pide la contraseña (al escribirla no se ve nada, es normal). Si aparece el prom
 
 **Explicación:** `-u wp_user` indica el usuario, `-p` pide la contraseña y `wordpress` es la base de datos a la que entro.
 
-> 📸 **PENDIENTE: captura de `CREATE DATABASE wordpress;` (primera orden) y de la entrada con `wp_user`** mostrando el prompt `MariaDB [wordpress]>`. Guárdala como `img/wordpress-3.2.png`. La contraseña no debe verse.
 
 > **Si me equivoco y quiero empezar de nuevo:** `sudo mariadb`, y ejecutar `DROP DATABASE wordpress;` y `DROP USER 'wp_user'@'localhost';`. Luego repetir las tres órdenes.
 
-### ❓ ¿Por qué WordPress usa su propio usuario `wp_user` con permiso solo sobre su base y no el usuario `root` de MariaDB?
+###  ¿Por qué WordPress usa su propio usuario `wp_user` con permiso solo sobre su base y no el usuario `root` de MariaDB?
 
 **Respuesta:** por **seguridad** y por el **principio de mínimo privilegio**: cada cosa debe tener solo los permisos que necesita.
 
@@ -319,7 +317,7 @@ Ahora WordPress está en `/var/www/html` y se ve en `http://192.168.56.17/`.
 > Si el navegador sigue mostrando la página anterior («Servidor de Nabil»), es caché. Se puede comprobar con `curl -I http://localhost`.
 
 
-### ❓ Explica qué hace cada uno de los comandos que acabas de ejecutar (4.1 y 4.2)
+###  Explica qué hace cada uno de los comandos que acabas de ejecutar (4.1 y 4.2)
 
 | Comando | Qué hace |
 |---|---|
@@ -364,7 +362,7 @@ drwxr-xr-x 5 www-data www-data 4096 Oct  6 16:05 /var/www/html
 
 La captura muestra `drwxr-xr-x ... www-data www-data`: propietario y grupo son `www-data`.
 
-### ❓ ¿Por qué hay que cambiar el propietario de la carpeta de WordPress a `www-data`? ¿Qué podría fallar si siguiera siendo mi usuario?
+###  ¿Por qué hay que cambiar el propietario de la carpeta de WordPress a `www-data`? ¿Qué podría fallar si siguiera siendo mi usuario?
 
 **Respuesta:** Apache ejecuta los procesos web con el usuario **`www-data`**, así que cuando WordPress necesita **escribir** en el disco lo hace como `www-data`. Si la carpeta siguiera siendo de mi usuario (o de `root`) con permisos 755/644, `www-data` solo podría **leer** y fallarían cosas como:
 
@@ -417,7 +415,7 @@ Ahora viene la parte visual. **En el navegador de mi ordenador** abro `http://19
 
 **Qué ha pasado por debajo:** al enviar la pantalla 3, WordPress comprobó que podía entrar en la base de datos y **creó él solo** su fichero de configuración, `wp-config.php` (por eso necesita que `www-data` pueda escribir en la carpeta). En la pantalla 5 creó las **tablas** en MariaDB y mi **usuario administrador**.
 
-### ❓ ¿Qué partes de la instalación has hecho en la terminal y cuáles en el navegador? ¿Por qué el servidor no necesita interfaz gráfica?
+###  ¿Qué partes de la instalación has hecho en la terminal y cuáles en el navegador? ¿Por qué el servidor no necesita interfaz gráfica?
 
 **Respuesta:**
 
@@ -496,7 +494,7 @@ Salida:
 | Temas, plugins e imágenes subidas | `/var/www/html/wp-content/` (carpetas `themes`, `plugins` y `uploads`) |
 | Las entradas, usuarios y ajustes | En la base de datos `wordpress` de MariaDB |
 
-### ❓ ¿Dónde guarda WordPress las entradas que escribes: en ficheros del servidor o en la base de datos? ¿Cómo lo has comprobado?
+###  ¿Dónde guarda WordPress las entradas que escribes: en ficheros del servidor o en la base de datos? ¿Cómo lo has comprobado?
 
 **Respuesta:** las entradas se guardan en la **base de datos** (tabla `wp_posts`), **no** en ficheros. Lo comprobé ejecutando `sudo mariadb wordpress -e "SHOW TABLES;"`, que muestra las tablas que WordPress creó en MariaDB, entre ellas `wp_posts`. Los ficheros del servidor (`/var/www/html`) contienen el **programa** de WordPress, los temas, los plugins y las imágenes subidas, pero no el texto de las entradas.
 
@@ -639,7 +637,7 @@ Compruebo en el panel: *Medios → Añadir nuevo*.
 
 **Explicación:** la biblioteca de medios indica **«Tamaño máximo de archivo: 64 MB»**, así que el ajuste ha funcionado.
 
-### ❓ ¿Por qué las direcciones «bonitas» dan error 404 si Apache no tiene permitido leer el fichero `.htaccess`?
+###  ¿Por qué las direcciones «bonitas» dan error 404 si Apache no tiene permitido leer el fichero `.htaccess`?
 
 **Respuesta:** una dirección bonita como `/mi-entrada/` **no corresponde a ningún fichero ni carpeta real** del servidor; la entrada está en la base de datos. WordPress soluciona esto con reglas de reescritura en el `.htaccess` («todo lo que no exista como fichero, mándalo a `index.php`», que busca la entrada y la muestra). Si Apache tiene `AllowOverride None`, **ignora el `.htaccess`**, no aplica esas reglas y busca literalmente un fichero o carpeta llamado `mi-entrada`. Como no existe, responde con **error 404**. Con `AllowOverride All` (y `mod_rewrite` activado) las reglas funcionan y la dirección se muestra bien.
 
@@ -684,7 +682,7 @@ Recargo la web y vuelve a funcionar:
 1. **¿Está MariaDB en marcha?** → `systemctl is-active mariadb`. Si no, `sudo systemctl start mariadb`.
 2. **¿Siguen siendo correctos el usuario y la contraseña?** → `mariadb -u wp_user -p wordpress`. Si falla, las credenciales de `wp-config.php` no coinciden con las de MariaDB.
 
-### ❓ Cuando WordPress muestra «Error al establecer una conexión con la base de datos», ¿qué dos cosas comprobarías y en qué orden?
+###  Cuando WordPress muestra «Error al establecer una conexión con la base de datos», ¿qué dos cosas comprobarías y en qué orden?
 
 **Respuesta:**
 
