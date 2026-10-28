@@ -13,3 +13,4 @@ Repositorio con las memorias de las prácticas del módulo de Aplicaciones Web.
 | 1 | Introducción a HTML básico | [Ver memoria](./practica-01-html-basico/memoria.md) |
 | 2 | Instalacion servidor web Apache | [Ver memoria](./practica-02-instlacion-servidor-web-apache) |
 | 3 | Instalación de MariaDB y PHP | [Ver memoria](./practica-03-mariadb-y-php) |
+| 4 | Instalación WordPress | [Ver memoria](./practica-04-instalacion-wordpress) |
