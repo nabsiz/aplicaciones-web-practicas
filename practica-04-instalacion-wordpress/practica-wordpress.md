@@ -78,7 +78,7 @@ Salida:
 
 📸 **Captura: IP del servidor**
 
-![hostname -I](img/wordpress-1.1.png)
+![hostname -I](img/1.1.png)
 
 **Explicación:** `hostname -I` muestra todas las direcciones IP de la máquina. Aparecen tres:
 
@@ -98,7 +98,7 @@ La primera vez pregunta si confío en el servidor (escribo `yes`) y luego pide l
 
 **Explicación:** `ssh usuario@IP` abre una sesión de terminal remota y **cifrada** en el servidor. Así administro la máquina virtual desde mi ordenador sin usar su consola.
 
-> 📸 **PENDIENTE: captura de la conexión SSH** (la terminal de Mint con `ssh smr-web@192.168.56.17` y el prompt del servidor ya dentro). Guárdala como `img/wordpress-1.2.png` y añade `![Conexión SSH](img/wordpress-1.2.png)`.
+![ssh usuario](img/1.2.png)
 
 ### 1.3. Comprobar que lo anterior sigue funcionando
 
@@ -107,9 +107,8 @@ systemctl is-active apache2 mariadb
 php -v
 ```
 
-📸 **Captura: servicios y versión de PHP**
 
-![Apache, MariaDB y PHP](img/wordpress-1.3.png)
+![Apache, MariaDB y PHP](img/1.3.png)
 
 Salida:
 
@@ -143,9 +142,8 @@ sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
 
-📸 **Captura: comandos y salidas**
 
-![Cambio de sitios activos](img/wordpress-2.1.png)
+![Cambio de sitios activos](img/2.1.png)
 
 Salida:
 
@@ -191,9 +189,8 @@ ls /etc/apache2/sites-enabled/
 grep DocumentRoot /etc/apache2/sites-enabled/000-default.conf
 ```
 
-📸 **Captura: sitio activo y `DocumentRoot`**
 
-![Un solo sitio activo](img/wordpress-2.2.png)
+![Un solo sitio activo](img/2.2.png)
 
 Salida:
 
@@ -208,9 +205,7 @@ Salida:
 
 En el navegador de mi ordenador abro `http://192.168.56.17`.
 
-📸 **Captura: página servida por Apache**
-
-![Navegador](img/wordpress-2.3.png)
+![Navegador](img/2.3.png)
 
 **Explicación:** aparece mi página «Servidor de Nabil» (la de la primera práctica). Entro con la **IP** y ya no hace falta usar `sitio1.local` ni `sitio2.local`.
 
@@ -251,9 +246,8 @@ GRANT ALL ON wordpress.* TO 'wp_user'@'localhost';
 exit
 ```
 
-📸 **Captura: las tres órdenes (sin la contraseña visible)**
 
-![Creación de la base de datos y del usuario](img/wordpress-3.png)
+![Creación de la base de datos y del usuario](img/3.png)
 
 Salida de cada una:
 
@@ -308,7 +302,6 @@ ls wordpress
 
 Aparecen ficheros como `index.php`, `wp-admin`, `wp-content` y `wp-config-sample.php`.
 
-> 📸 **PENDIENTE: captura de la descarga con `wget` y del `ls wordpress`.** Guárdala como `img/wordpress-4.1.png`.
 
 ### 4.2. Colocarlo en la carpeta del sitio
 
@@ -325,7 +318,6 @@ Ahora WordPress está en `/var/www/html` y se ve en `http://192.168.56.17/`.
 
 > Si el navegador sigue mostrando la página anterior («Servidor de Nabil»), es caché. Se puede comprobar con `curl -I http://localhost`.
 
-> 📸 **PENDIENTE: captura del `ls /var/www/html`** donde se vean `wp-admin`, `wp-content`, `wp-includes`, `index.php`, etc. Guárdala como `img/wordpress-4.2.png`.
 
 ### ❓ Explica qué hace cada uno de los comandos que acabas de ejecutar (4.1 y 4.2)
 
@@ -353,9 +345,7 @@ sudo find /var/www/html -type f -exec chmod 644 {} \;
 ls -ld /var/www/html
 ```
 
-📸 **Captura: carpeta de WordPress y permisos**
-
-![Permisos de /var/www/html](img/wordpress-4.3.png)
+![Permisos de /var/www/html](img/4.3.png)
 
 Salida:
 
@@ -453,9 +443,8 @@ Abro `http://192.168.56.17/wp-admin` e inicio sesión con mi usuario administrad
 
 En el panel: *Entradas → Añadir nueva*. Escribo un título y un texto (mi nombre y la fecha), pulso *Publicar* y compruebo que aparece en la web pública.
 
-📸 **Captura: entrada publicada en la web**
 
-![Entrada publicada](img/wordpress-9.2.png)
+![Entrada publicada](img/9.2.png)
 
 **Explicación:** en el blog se ve la entrada **«Nabil Aisatin»** con fecha 26/10/2026 (la que acabo de publicar) y debajo la entrada de ejemplo «¡Hola, mundo!». La barra negra superior («Hola, pako») indica que estoy dentro del panel con la sesión iniciada.
 
@@ -465,9 +454,8 @@ En el panel: *Entradas → Añadir nueva*. Escribo un título y un texto (mi nom
 sudo mariadb wordpress -e "SHOW TABLES;"
 ```
 
-📸 **Captura: tablas de WordPress**
 
-![SHOW TABLES](img/wordpress-6.5.png)
+![SHOW TABLES](img/6.5.png)
 
 Salida:
 
@@ -539,13 +527,11 @@ Guardo con `Ctrl+O`, `Enter` y salgo con `Ctrl+X`. Compruebo que no hay errores:
 php -l /var/www/html/wp-config.php
 ```
 
-📸 **Captura: las dos líneas dentro de `wp-config.php`**
 
-![Líneas en wp-config.php](img/wordpress-7.1.png)
+![Líneas en wp-config.php](img/7.1.png)
 
-📸 **Captura: resultado de `php -l`**
 
-![php -l](img/wordpress-7.2.png)
+![php -l](img/7.2.png)
 
 Salida:
 
@@ -585,9 +571,8 @@ Contenido:
 </Directory>
 ```
 
-📸 **Captura: configuración de Apache**
 
-![wordpress.conf](img/wordpress-8.2.1.png)
+![wordpress.conf](img/8.2.1.png)
 
 Lo activo (el módulo `rewrite` ya estaba activado, pero así me aseguro):
 
@@ -607,15 +592,13 @@ sudo systemctl restart apache2
 
 Después, en el panel de WordPress: *Ajustes → Enlaces permanentes → Nombre de la entrada → Guardar cambios*.
 
-📸 **Captura: enlaces permanentes en el panel**
 
-![Enlaces permanentes](img/wordpress-8.2.2.png)
+![Enlaces permanentes](img/8.2.2.png)
 
 **Explicación:** en el panel se elige la estructura **«Nombre de la entrada»** (`http://192.168.56.17/pagina-ejemplo/`) en lugar de la «Simple» (`/?p=123`).
 
-📸 **Captura: dirección «bonita» de una entrada**
 
-![Dirección bonita](img/wordpress-8.2.3.png)
+![Dirección bonita](img/8.2.3.png)
 
 **Explicación:** la página se abre en `http://192.168.56.17/pagina-ejemplo/` y se ve correctamente (no da 404). La dirección es clara y legible.
 
@@ -631,7 +614,7 @@ Salida esperada:
 -rw-r--r-- 1 www-data www-data 261 ... /var/www/html/.htaccess
 ```
 
-> 📸 **PENDIENTE (recomendado): captura de `ls -la /var/www/html/.htaccess`.** Guárdala como `img/wordpress-8.1.png`.
+![ls -la /var/www/html/.htaccess](img/8.1.png)
 
 ### 8.2. Poder subir ficheros grandes
 
@@ -651,7 +634,6 @@ sudo systemctl restart apache2
 
 Compruebo en el panel: *Medios → Añadir nuevo*.
 
-📸 **Captura: tamaño máximo de subida**
 
 ![Tamaño máximo 64 MB](img/wordpress-8.2.4.png)
 
@@ -673,9 +655,8 @@ sudo systemctl stop mariadb
 
 Recargo `http://192.168.56.17` en el navegador.
 
-📸 **Captura: error en el navegador**
 
-![Error de conexión con la base de datos](img/wordpress-9.1.png)
+![Error de conexión con la base de datos](img/9.1.png)
 
 **Explicación:** aparece **«Error establishing a database connection»** (en español, *«Error al establecer una conexión con la base de datos»*). WordPress no puede leer sus datos porque MariaDB está apagado.
 
@@ -694,11 +675,9 @@ active
 
 Recargo la web y vuelve a funcionar:
 
-📸 **Captura: web recuperada**
 
-![Web recuperada](img/wordpress-9.2.png)
+![Web recuperada](img/9.2.png)
 
-> 📸 **PENDIENTE (opcional): captura de la terminal** con `stop`, `start` y `is-active` (`inactive` → `active`). Guárdala como `img/wordpress-9.3.png`.
 
 ### Guía rápida cuando WordPress muestre ese error
 
@@ -725,9 +704,8 @@ ls /etc/apache2/sites-enabled/
 sudo mariadb wordpress -e "SHOW TABLES;"
 ```
 
-📸 **Captura: comprobación final**
 
-![Comprobación final](img/wordpress-10.png)
+![Comprobación final](img/10.png)
 
 **Explicación:** Apache y MariaDB responden `active`, PHP es la 8.3.6, en `sites-enabled` solo hay `000-default.conf` (**un único sitio**) y la base `wordpress` tiene sus 12 tablas.
 
@@ -753,8 +731,6 @@ sudo mariadb wordpress -e "SHOW TABLES;"
 ### Snapshot
 
 Hago una nueva **instantánea (snapshot)** de la máquina virtual con el servidor listo. Será mi punto de partida seguro para trabajar con WordPress.
-
-> 📸 **PENDIENTE (si lo pide el profesor): captura del snapshot** en VirtualBox.
 
 ---
 
@@ -808,8 +784,3 @@ En seguridad, he aplicado dos ideas importantes: usar un **usuario de base de da
 | Al activar el sitio por defecto decía `Site 000-default already enabled` | Ya lo había activado en la práctica anterior | No es un error: solo confirma que ya estaba activo |
 | Aviso `AH00558` sobre el `ServerName` | Apache no tiene un nombre de servidor global | `ServerName localhost` en `conf-available/servername.conf` y `a2enconf servername` |
 | Aparecía la página «Servidor de Nabil» en vez de WordPress | Seguía existiendo `/var/www/html/index.html` (tiene prioridad sobre `index.php`) o era caché del navegador | Borrar `index.html` y comprobar con `curl -I http://localhost` |
-| Las direcciones «bonitas» dan 404 | Apache ignora el `.htaccess` con `AllowOverride None` | Crear `wordpress.conf` con `AllowOverride All`, activar `rewrite` y `a2enconf wordpress` |
-| La web saldría sin diseño si cambia la IP | WordPress guarda en la base de datos la IP con la que se instaló | `WP_HOME` y `WP_SITEURL` con `$_SERVER['HTTP_HOST']` en `wp-config.php` |
-| Error de conexión con la base de datos al parar MariaDB | MariaDB parado (a propósito) | `sudo systemctl start mariadb` y comprobar con `is-active` |
-
-> ✏️ **Edita esta tabla** y deja solo los problemas que de verdad tuviste.
